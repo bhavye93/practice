@@ -1,0 +1,29 @@
+<h2 class="page-header">Dashboard</h2>
+
+<div *ngIf="user">
+
+<p> Welcome, {{user.name}}</p>
+
+<form (submit)="book()" *ngIf="user.canBook">
+  <div class="form-group">
+    <label>Appointment Date and Time</label>
+    <input type="datetime-local" class="form-control" [(ngModel)]="date" name="date">
+  </div>
+
+  <input type="submit" class="btn btn-primary" value="Book Appointment">
+</form>
+
+<div *ngIf="appointments">
+    <h3> All appointments </h3>
+    <ol>
+        <div *ngFor="let apt of appointments">
+            <li>
+                Booked by :  {{apt.bookedBy}} <br>
+                Date : {{apt.d}}-{{apt.m}}-{{apt.yr}} <br>
+                Time : {{apt.hr}}:{{apt.min}}  (24 hours format)<br><br>
+            </li>            
+        </div>
+    </ol>
+</div>
+
+</div>
